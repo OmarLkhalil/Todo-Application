@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">route-todo-Application</string>
+    <string name="menu">menu</string>
+    <string name="settings">settings</string>
 </resources>
