@@ -1,12 +1,13 @@
 package com.omar.route_todo_application.database
 
 import android.app.Application
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import android.content.Context
+import androidx.room.*
 import com.omar.route_todo_application.models.Dao
 import com.omar.route_todo_application.models.Todo
+import java.util.*
 
+@TypeConverters(DateConverter::class)
 @Database(entities =  [Todo::class], version = 1)
 abstract class MyDatabase: RoomDatabase() {
 
@@ -16,7 +17,7 @@ abstract class MyDatabase: RoomDatabase() {
         val DATABASE_NAME = "todo_database"
         var myDatabase: MyDatabase? = null
 
-        fun getInstance(context: Application): MyDatabase {
+        fun getInstance(context: Context): MyDatabase? {
             if(myDatabase==null) {
                 Room.databaseBuilder(
                 context, MyDatabase::class.java, DATABASE_NAME
@@ -24,7 +25,7 @@ abstract class MyDatabase: RoomDatabase() {
                  .allowMainThreadQueries()
                  .build()
         }
-            return myDatabase!!
+            return myDatabase
         }
     }
 }

@@ -2,4 +2,7 @@
     <string name="app_name">route-todo-Application</string>
     <string name="menu">menu</string>
     <string name="settings">settings</string>
+    <string name="add_new_todo">add New Todo</string>
+    <string name="choose_date">choose date</string>
+    <string name="addtodo">AddTodo</string>
 </resources>

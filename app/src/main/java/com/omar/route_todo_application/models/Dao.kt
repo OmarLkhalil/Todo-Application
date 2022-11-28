@@ -10,14 +10,14 @@ import androidx.room.Update
 interface Dao {
 
     @Insert
-    suspend fun addTodo(todo: Todo)
+    fun addTodo(todo: Todo)
 
     @Update
-    suspend fun updateTodo(todo: Todo)
+    fun updateTodo(todo: Todo)
 
     @Delete
-    suspend fun deleteTodo(todo: Todo)
+    fun deleteTodo(todo: Todo)
 
-    @Query("SELECT * FROM Todo")
-    suspend fun getAllTodos(query: Query): List<Todo>
+    @Query("select * from Todo")
+    fun getAllTodos(): List<Todo>
 }
