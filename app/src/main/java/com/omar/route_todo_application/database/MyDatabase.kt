@@ -1,31 +1,29 @@
 package com.omar.route_todo_application.database
 
-import android.app.Application
 import android.content.Context
 import androidx.room.*
 import com.omar.route_todo_application.models.Dao
 import com.omar.route_todo_application.models.Todo
-import java.util.*
 
 @TypeConverters(DateConverter::class)
-@Database(entities =  [Todo::class], version = 1)
+@Database(entities =  [Todo::class], version = 1, exportSchema = false)
 abstract class MyDatabase: RoomDatabase() {
 
     abstract  fun todoDao(): Dao
 
-    companion object{
-        val DATABASE_NAME = "todo_database"
-        var myDatabase: MyDatabase? = null
-
-        fun getInstance(context: Context): MyDatabase? {
-            if(myDatabase==null) {
-                Room.databaseBuilder(
-                context, MyDatabase::class.java, DATABASE_NAME
-                ).fallbackToDestructiveMigration()
-                 .allowMainThreadQueries()
-                 .build()
+        companion object{
+            private var myDataBase:MyDatabase?=null
+            fun getInstance(context:Context):MyDatabase{
+                if(myDataBase==null){
+                    // create object
+                    myDataBase = Room.databaseBuilder(
+                        context,MyDatabase::class.java,
+                        "tasks-database")
+                        .allowMainThreadQueries()
+                        .fallbackToDestructiveMigration()
+                        .build();
+                }
+                return myDataBase!!
+            }
         }
-            return myDatabase
-        }
-    }
 }

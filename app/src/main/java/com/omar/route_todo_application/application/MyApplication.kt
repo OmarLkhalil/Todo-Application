@@ -2,32 +2,29 @@ package com.omar.route_todo_application.application
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationBarView
 import com.omar.route_todo_application.R
+import com.omar.route_todo_application.databinding.ActivityMainBinding
 import com.omar.route_todo_application.ui.fragments.AddToDoBottomSheet
 import com.omar.route_todo_application.ui.fragments.SettingsFragment
-import com.omar.route_todo_application.ui.fragments.TodoListFragment
+import com.omar.route_todo_application.ui.fragments.TodoList.TodoListFragment
 
 class MyApplication : AppCompatActivity() {
 
-    private lateinit var bottomNav: BottomNavigationView
-    private lateinit var addFab   : FloatingActionButton
+    private lateinit var  binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        bottomNav = findViewById(R.id.bottom_navigation)
-        addFab    = findViewById(R.id.fab)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        addFab.setOnClickListener{
+        binding.fab.setOnClickListener{
             showAddBottomSheet()
         }
 
-        bottomNav.setOnItemSelectedListener(
+        binding.bottomNavigation.setOnItemSelectedListener(
             NavigationBarView.OnItemSelectedListener {
                     item->
                 if(item.itemId == R.id.menu_list)
@@ -42,7 +39,7 @@ class MyApplication : AppCompatActivity() {
             }
         )
 
-        bottomNav.selectedItemId = R.id.menu_list
+        binding.bottomNavigation.selectedItemId = R.id.menu_list
     }
 
     private fun showAddBottomSheet() {

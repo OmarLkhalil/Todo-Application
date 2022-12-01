@@ -1,85 +1,72 @@
 package com.omar.route_todo_application.ui.fragments
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.app.DatePickerDialog
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.textfield.TextInputLayout
 import com.omar.route_todo_application.R
+import com.omar.route_todo_application.clearTime
 import com.omar.route_todo_application.database.MyDatabase
+import com.omar.route_todo_application.databinding.FragmentAddTodoBinding
 import com.omar.route_todo_application.models.Todo
 import java.util.Calendar
 
 class AddToDoBottomSheet : BottomSheetDialogFragment() {
 
-    private lateinit var buttonAdd     : Button
-    private lateinit var titleLayout   : TextInputLayout
-    private lateinit var detailsLayout : TextInputLayout
-    private lateinit var chooseDate    : TextView
-
-
+    private lateinit var binding : FragmentAddTodoBinding
     private val calendar: Calendar = Calendar.getInstance()
-    @RequiresApi(Build.VERSION_CODES.N)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?{
-        val view = inflater.inflate(R.layout.fragment_add_todo, container, false)
-        initViews(view)
-        return view
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_todo, container, false)
+
+        return binding.root
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+    }
     @SuppressLint("SetTextI18n")
-    @RequiresApi(Build.VERSION_CODES.N)
     private fun initViews(view: View){
-        titleLayout   = view.findViewById(R.id.todo_title)
-        detailsLayout = view.findViewById(R.id.todo_details)
-        buttonAdd     = view.findViewById(R.id.button_addtodo)
-        chooseDate    = view.findViewById(R.id.choose_date)
 
-        chooseDate.setOnClickListener {
+        binding.chooseDate.setOnClickListener {
             showDate()
         }
 
-        chooseDate.text = (
+        binding.chooseDate.text = (
                 ""      +(calendar.get(Calendar.MONTH)+1)
                         +"/"
                         +calendar.get(Calendar.DAY_OF_MONTH)+"/"
                         +calendar.get(Calendar.YEAR))
 
-        buttonAdd.setOnClickListener {
+        binding.buttonAddtodo.setOnClickListener {
             if(validate()){
                 // Is valid and insert Todo Item
-                val title = titleLayout.editText?.text?.toString()
-                val details = detailsLayout.editText?.text?.toString()
-                insertTodo(title, details)
+                insertTodo(binding.todoTitle.editText.toString(), binding.todoDetails.editText.toString())
             }
         }
-
     }
 
     private fun insertTodo(title: String?, details: String?) {
-        var todo = Todo(
-            name = title,
+        val todo = Todo(
+            name    = title,
             details = details,
-            date = calendar.time
+            date    = calendar.clearTime().time,
+            isDone  = false
         )
-        MyDatabase.getInstance(
-            requireContext().applicationContext
-        )
-            ?.todoDao()
-            ?.addTodo(todo)
+        MyDatabase.getInstance(requireContext())
+            .todoDao()
+            .addTodo(todo)
         Toast.makeText(requireContext(), "Todo added successfully", Toast.LENGTH_LONG).show()
         dismiss()
     }
@@ -88,36 +75,37 @@ class AddToDoBottomSheet : BottomSheetDialogFragment() {
 
         var isValid = true
 
-        if(titleLayout.editText?.text.toString().isBlank()){
-            titleLayout.error = "Please enter a title"
+        if(binding.todoTitle.editText?.text.toString().isBlank()){
+            binding.todoTitle.error = "Please enter a title"
             isValid = false
         }
         else {
-            titleLayout.error = null
+            binding.todoTitle.error = null
         }
 
-        if(detailsLayout.editText?.text.toString().isBlank()){
-            detailsLayout.error = "Please enter a details"
+        if(binding.todoDetails.editText?.text.toString().isBlank()){
+            binding.todoDetails.error = "Please enter a details"
             isValid = false
         }
         else
         {
-            detailsLayout.error = null
+            binding.todoDetails.error = null
         }
         return isValid
     }
     @SuppressLint("SetTextI18n")
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun showDate(){
         val context    = requireContext()
         val datePicker = DatePickerDialog(context,
+
             { _, year, month, day ->
                 calendar.set(Calendar.DAY_OF_MONTH, day)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.YEAR, year)
-                chooseDate.text = ""+day+ "/" +(month+1)+ "/" +year
+                binding.chooseDate.text = ""+day+ "/" +(month+1)+ "/" +year
             },
+
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)

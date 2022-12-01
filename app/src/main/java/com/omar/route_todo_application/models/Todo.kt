@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
+import java.io.Serializable
 
 @Entity
 data class Todo (
@@ -18,4 +19,4 @@ data class Todo (
     val date: Date? = null,
     @ColumnInfo
     val isDone: Boolean = false,
-)
+):Serializable

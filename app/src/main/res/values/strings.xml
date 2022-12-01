@@ -5,4 +5,7 @@
     <string name="add_new_todo">add New Todo</string>
     <string name="choose_date">choose date</string>
     <string name="addtodo">AddTodo</string>
+    <string name="checkboxfortodo">Checkboxfortodo</string>
+    <string name="Add">Add</string>
+    <string name="add_new_todo_button">add new todo</string>
 </resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todoItem"
+            type="com.omar.route_todo_application.models.Todo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="20dp"
+        app:contentPadding="8dp"
+        android:layout_margin="4dp"
+        android:elevation="8dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_marginStart="20dp"
+                android:id="@+id/vertical_line"
+                android:layout_width="4dp"
+                android:layout_height="80dp"
+                android:background="@color/purple_200"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </View>
+
+            <ImageView
+                android:id="@+id/mark_as_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/checkbox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/checkboxfortodo">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/Todo_title_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Play baskedBall"
+                android:maxLines="1"
+                android:layout_marginTop="10dp"
+                android:text="@{todoItem.name}"
+                android:textSize="24sp"
+                android:textColor="@color/purple_200"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vertical_line"
+                app:layout_constraintEnd_toStartOf="@+id/mark_as_done">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="I want to go playing in the club"
+                android:text="@{todoItem.details}"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/Todo_title_"
+                app:layout_constraintStart_toEndOf="@id/vertical_line"
+                app:layout_constraintEnd_toStartOf="@+id/mark_as_done">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

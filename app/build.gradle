@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.omar.route_todo_application"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -32,13 +32,20 @@ android {
         jvmTarget = '1.8'
     }
 
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
 }
 
 dependencies {
 
     implementation 'androidx.room:room-runtime:2.4.3'
     implementation 'androidx.core:core-ktx:1.7.0'
+    annotationProcessor 'androidx.room:room-compiler:2.4.3'
     kapt'androidx.room:room-compiler:2.4.3'
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -48,3 +55,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }
+

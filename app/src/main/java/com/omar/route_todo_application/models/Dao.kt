@@ -4,9 +4,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import java.util.*
+import androidx.room.Dao
 
-
-@androidx.room.Dao
+@Dao
 interface Dao {
 
     @Insert
@@ -20,4 +21,8 @@ interface Dao {
 
     @Query("select * from Todo")
     fun getAllTodos(): List<Todo>
+
+    @Query("select * from Todo where date = :dateParam")
+    fun getTodosByDate(dateParam: Date): List<Todo>
+
 }
