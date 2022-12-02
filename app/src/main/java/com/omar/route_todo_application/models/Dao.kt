@@ -25,4 +25,6 @@ interface Dao {
     @Query("select * from Todo where date = :dateParam")
     fun getTodosByDate(dateParam: Date): List<Todo>
 
+    @Query("select * from todo where id = :id")
+    fun getTaskById(id:Int):Todo
 }
