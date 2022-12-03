@@ -7,8 +7,8 @@ import com.google.android.material.navigation.NavigationBarView
 import com.omar.route_todo_application.R
 import com.omar.route_todo_application.base.BaseApplication
 import com.omar.route_todo_application.databinding.ActivityMainBinding
-import com.omar.route_todo_application.ui.fragments.AddToDoBottomSheet
-import com.omar.route_todo_application.ui.fragments.SettingsFragment
+import com.omar.route_todo_application.ui.fragments.addtodo.AddToDoBottomSheet
+import com.omar.route_todo_application.ui.fragments.settings.SettingsFragment
 import com.omar.route_todo_application.ui.fragments.todolist.TodoListFragment
 
 class MyApplication : BaseApplication() {
@@ -19,6 +19,7 @@ class MyApplication : BaseApplication() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
 
         binding.addButton.setOnClickListener{
             showAddBottomSheet()

@@ -1,4 +1,4 @@
-package com.omar.route_todo_application.ui.fragments
+package com.omar.route_todo_application.ui.fragments.addtodo
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -26,7 +26,6 @@ class AddToDoBottomSheet : BaseBottomSheet() {
         currentDate.set(Calendar.MILLISECOND,0)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +34,6 @@ class AddToDoBottomSheet : BaseBottomSheet() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_todo, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

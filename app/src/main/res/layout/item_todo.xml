@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
     </data>
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="18dp"
@@ -15,36 +17,6 @@
         android:layout_margin="8dp"
        >
 
-        <com.zerobranch.layout.SwipeLayout
-            android:id="@+id/swipe_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:swipeDirection="right"
-            app:draggedItem="@id/content"
-            app:leftItem="@id/delete"
-            >
-            <LinearLayout
-                android:id="@+id/delete"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="48dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/rounded_left_red"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_delete"
-                    android:background="@color/red"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textColor="@color/white"
-                    />
-
-            </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/content"
                 android:background="@color/white"
@@ -63,6 +35,7 @@
 
                 <ImageView
                     android:id="@+id/mark_done"
+                    android:adjustViewBounds="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="24dp"
@@ -105,8 +78,6 @@
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.zerobranch.layout.SwipeLayout>
-
 
     </androidx.cardview.widget.CardView>
 

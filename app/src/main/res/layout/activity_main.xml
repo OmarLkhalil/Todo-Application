@@ -7,10 +7,21 @@
 
     </data>
 
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
->
+        android:background="@color/primary"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@color/purple_200"
+            >
+
+        </ImageView>
+
         <include
             android:id="@+id/content"
             layout="@layout/content_home"
@@ -34,6 +45,7 @@
 
 
         </com.google.android.material.bottomappbar.BottomAppBar>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
@@ -42,7 +54,12 @@
             app:layout_anchor="@id/bottomAppBar"
             app:tint="@color/white"
             android:backgroundTint="@color/purple_200"
+            android:shadowColor="@color/black"
+            android:shadowDx="10"
+            android:shadowDy="10"
             />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 </layout>

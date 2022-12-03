@@ -6,6 +6,10 @@
     <data>
 
     </data>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:mcv_showOtherDates="all"
-            app:mcv_selectionColor="@color/purple_200"
+            app:mcv_selectionColor="@color/teal_200"
             app:mcv_calendarMode="week"
             app:mcv_firstDayOfWeek="saturday"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,4 +39,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

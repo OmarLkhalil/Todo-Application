@@ -12,11 +12,11 @@ data class Todo (
     @ColumnInfo
     val id: Int? = null,
     @ColumnInfo
-    val name: String? = null,
+    var name: String? = null,
     @ColumnInfo
-    val details: String? = null,
+    var details: String? = null,
     @ColumnInfo
-    val date: Date? = null,
+    var date: Date? = null,
     @ColumnInfo
-    val isDone: Boolean = false,
+    var isDone: Boolean = false,
 ):Serializable

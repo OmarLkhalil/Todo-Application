@@ -1,4 +1,4 @@
-package com.omar.route_todo_application.ui.fragments
+package com.omar.route_todo_application.ui.fragments.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
