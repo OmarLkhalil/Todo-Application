@@ -30,8 +30,6 @@ class UpdateTodo: AppCompatActivity() {
         todo = (intent.getSerializableExtra("Todo") as Todo)
 
         Log.i("Ut", "Update Todo Started")
-        showData(todo)
-
         binding.submit.setOnClickListener{
             updateTodo(todo)
         }
@@ -85,9 +83,4 @@ class UpdateTodo: AppCompatActivity() {
         return isValid
     }
 
-    private fun showData(todo: Todo) {
-        binding.titleContainer.editText?.setText(todo.name)
-        binding.descContainer.editText?.setText(todo.details)
-        binding.date.text = todo.date.toString()
-    }
 }

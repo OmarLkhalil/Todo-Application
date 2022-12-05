@@ -33,12 +33,15 @@ class TodoListFragment: BaseTodoList(){
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo_list
             , container
             , false)
+
+        Log.i("OnCreateTodoListFragment", " OnCreate is Started")
         return binding.root
     }
 
 
     private val currentDate: Calendar = Calendar.getInstance();
 
+    // I need current date of the day and months maybe weeks ( I don't care for hrs, mins, secs)
     init {
         currentDate.set(Calendar.HOUR,0)
         currentDate.set(Calendar.MINUTE,0)
@@ -66,6 +69,8 @@ class TodoListFragment: BaseTodoList(){
             currentDate.set(Calendar.DAY_OF_MONTH,selectedDate.day)
             currentDate.set(Calendar.YEAR,selectedDate.year)
             reloadTasks()
+
+            Log.i("OnViewCreated", "On View Created is Started")
         }
 
 
@@ -94,7 +99,7 @@ class TodoListFragment: BaseTodoList(){
             .getTodosByDate(currentDate.time)
         adapter.reloadTasks(todosList)
 
-        // I want to see when the tasks is reloaded while debugging
+        // I want to know when the tasks is reloaded
         Log.i("R", "tasks reloaded now")
     }
 
@@ -108,7 +113,7 @@ class TodoListFragment: BaseTodoList(){
                 dialogInterface?.dismiss()
                 MyDatabase.getInstance(requireContext())
                     .todoDao()
-                    .deleteTodo(todo) // It will be deleted from datebase ( we show only tasks in the database)
+                    .deleteTodo(todo) // It will be deleted from database ( we show only tasks in the database)
                         },
             // If user clicked cancel
             negActionTitle = "cancel",
@@ -120,6 +125,13 @@ class TodoListFragment: BaseTodoList(){
             }
         )
     }
+
+    override fun onResume() {
+        super.onResume()
+        reloadTasks()
+        Log.i("On Resume", "On Resume is Started")
+    }
+
 
     private val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
         ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -150,6 +162,7 @@ class TodoListFragment: BaseTodoList(){
     })
 
 
+    // when user clicked cancel button the item will back into the recyclerView
     private fun undoDelete(position: Int, todo: Todo){
         val deleteList = todosList.toMutableList()
         deleteList.add(position, todo)

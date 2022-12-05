@@ -42,10 +42,10 @@ class TodosAdapter(private val context: Context, private var Items:List<Todo>) :
     inner class ViewHolder(val binding:ItemTodoBinding):RecyclerView.ViewHolder(binding.root)
     {
         val todo  = Todo()
+        val intent = Intent(context, UpdateTodo::class.java)
 
         init {
            binding.root.setOnClickListener{
-               val intent = Intent(context, UpdateTodo::class.java)
                context.startActivity(intent)
                // I want to know if the item click happened
                Log.i("VH", "The Item is clicked")

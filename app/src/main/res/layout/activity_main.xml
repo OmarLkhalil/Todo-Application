@@ -7,59 +7,69 @@
 
     </data>
 
-
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary"
-        >
+    >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:background="@color/purple_200"
-            >
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+        >
 
-        </ImageView>
+    </ImageView>
 
-        <include
-            android:id="@+id/content"
-            layout="@layout/content_home"
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_frag"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             />
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
+
+
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:fabCradleMargin="10dp"
-            app:fabCradleRoundedCornerRadius="10dp"
-            app:fabCradleVerticalOffset="12dp"
-            >
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:elevation="0dp"
-                android:background="@android:color/transparent"
-                app:menu="@menu/home_navigation" />
-
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:elevation="2dp"
+            app:menu="@menu/home_navigation" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/add"
-            app:layout_anchor="@id/bottomAppBar"
             app:tint="@color/white"
             android:backgroundTint="@color/purple_200"
             android:shadowColor="@color/black"
             android:shadowDx="10"
             android:shadowDy="10"
+            app:elevation="4dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_nav_view"
+            app:layout_constraintTop_toTopOf="@id/bottom_nav_view"
+            app:layout_constraintStart_toStartOf="@id/bottom_nav_view"
+            app:layout_constraintEnd_toEndOf="@id/bottom_nav_view"
+            android:contentDescription="floatinaddbottomsheetbutton"
             />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
